@@ -1,0 +1,18 @@
+info:
+  name: Oh_My_Uboot
+  category: Reverse
+  author: PangBai
+  difficulty: 中等
+  release_stage: 2
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 28
+  actual_score: 333
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Ub007_1s_v3ry_ez}
+  type: static
+attachments:
+- re-u-boot
+container: {}

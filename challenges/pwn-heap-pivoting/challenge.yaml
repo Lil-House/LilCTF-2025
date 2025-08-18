@@ -1,0 +1,28 @@
+info:
+  name: heap_Pivoting
+  category: Pwn
+  author: gets
+  difficulty: 简单
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 28
+  actual_score: 333
+  enable_blood_reward: true
+flag:
+  content: LILCTF{gets_drives_heap_migration}
+  type: leet
+attachments:
+- pwn-heap-pivoting.zip
+container:
+  name: heap-pivoting
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/pwn-heap-pivoting
+  expose_ports:
+  - name: nc
+    port: 70
+  cpu_limit: 100
+  memory_limit: 32
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

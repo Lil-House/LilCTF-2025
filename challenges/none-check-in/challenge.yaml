@@ -1,0 +1,17 @@
+info:
+  name: 是谁没有阅读参赛须知？
+  category: Misc
+  author: Anonymous
+  difficulty: N/A
+  release_stage: 1
+score:
+  max_score: 50
+  min_score: 50
+  solves: 618
+  actual_score: 50
+  enable_blood_reward: false
+flag:
+  content: LILCTF{Me4n1ngFu1_w0rDs}
+  type: static
+attachments: []
+container: {}

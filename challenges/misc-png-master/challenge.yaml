@@ -1,0 +1,18 @@
+info:
+  name: PNG Master
+  category: Misc
+  author: YanHuoLG
+  difficulty: 简单
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 133
+  actual_score: 101
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Y0u_4r3_Mas7er_in_PNG}
+  type: static
+attachments:
+- misc-PNG_M@st3r.png
+container: {}

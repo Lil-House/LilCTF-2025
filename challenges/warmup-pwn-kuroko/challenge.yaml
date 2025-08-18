@@ -1,0 +1,28 @@
+info:
+  name: 电击！白井黑子
+  category: Pwn
+  author: Anonymous
+  difficulty: N/A
+  release_stage: 0
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 5
+  actual_score: 866
+  enable_blood_reward: true
+flag:
+  content: LILCTF{onesama!_ahh_that's_too_intense..!!}
+  type: leet
+attachments:
+- warmup-pwn-kuroko.zip
+container:
+  name: warmup-pwn-kuroko
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/warmup-pwn-kuroko
+  expose_ports:
+  - name: nc
+    port: 70
+  cpu_limit: 100
+  memory_limit: 32
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

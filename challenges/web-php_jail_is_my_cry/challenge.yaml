@@ -1,0 +1,28 @@
+info:
+  name: php_jail_is_my_cry
+  category: Web
+  author: Kengwang
+  difficulty: 中等
+  release_stage: 2
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 10
+  actual_score: 673
+  enable_blood_reward: true
+flag:
+  content: LILCTF{break_out_the_jail_and_hear_my_curl_cry}
+  type: leet
+attachments:
+- web-php_jail_is_my_cry.zip
+container:
+  name: php-jail-is-my-cry
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/web-php_jail_is_my_cry
+  expose_ports:
+  - name: http
+    port: 80
+  cpu_limit: 100
+  memory_limit: 64
+  storage_limit: 128
+  allow_wan: false
+  allow_dns: false

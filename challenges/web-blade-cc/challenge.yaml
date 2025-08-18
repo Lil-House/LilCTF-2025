@@ -1,0 +1,28 @@
+info:
+  name: blade_cc
+  category: Web
+  author: N1ght
+  difficulty: 困难
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 5
+  actual_score: 836
+  enable_blood_reward: true
+flag:
+  content: LILCTF{HAPPY_CC_BLADE!}
+  type: leet
+attachments:
+- web-blade-cc.zip
+container:
+  name: blade-cc
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/web-blade-cc
+  expose_ports:
+  - name: http
+    port: 9000
+  cpu_limit: 200
+  memory_limit: 512
+  storage_limit: 512
+  allow_wan: false
+  allow_dns: false

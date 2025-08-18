@@ -1,0 +1,27 @@
+info:
+  name: 生蚝的宝藏
+  category: Blockchain
+  author: shenghuo2
+  difficulty: 中等
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 18
+  actual_score: 484
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Who_lives_in_a_seashell_under_the_sea?}
+  type: leet
+attachments: []
+container:
+  name: treasure-challenge
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/blockchain-treasure
+  expose_ports:
+  - name: nc
+    port: 20000
+  cpu_limit: 200
+  memory_limit: 256
+  storage_limit: 256
+  allow_wan: true
+  allow_dns: true

@@ -1,0 +1,17 @@
+info:
+  name: 反馈调查
+  category: Misc
+  author: Anonymous
+  difficulty: N/A
+  release_stage: 4
+score:
+  max_score: 50
+  min_score: 50
+  solves: 115
+  actual_score: 50
+  enable_blood_reward: false
+flag:
+  content: LILCTF{F4l1En_l3aV3s_Re7urN_T0_tHe1R_rO0tS}
+  type: static
+attachments: []
+container: {}

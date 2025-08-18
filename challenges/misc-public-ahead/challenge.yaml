@@ -1,0 +1,18 @@
+info:
+  name: 提前放出附件
+  category: Misc
+  author: C3ngH
+  difficulty: 简单
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 41
+  actual_score: 221
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Z1pCRyp70_1s_n0t_5ecur3}
+  type: static
+attachments:
+- misc-public-ahead.zip
+container: {}

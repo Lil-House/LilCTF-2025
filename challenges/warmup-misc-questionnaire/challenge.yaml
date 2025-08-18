@@ -1,0 +1,17 @@
+info:
+  name: 签到！真实世界的过期问卷
+  category: Misc
+  author: Anonymous
+  difficulty: N/A
+  release_stage: 0
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 81
+  actual_score: 136
+  enable_blood_reward: true
+flag:
+  content: LILCTF{API_1s_fUnNy_4nD_hAppY_H4cKln9}
+  type: static
+attachments: []
+container: {}

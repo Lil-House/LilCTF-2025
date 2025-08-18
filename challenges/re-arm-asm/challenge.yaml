@@ -1,0 +1,18 @@
+info:
+  name: ARM ASM
+  category: Reverse
+  author: PangBai
+  difficulty: 简单
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 170
+  actual_score: 100
+  enable_blood_reward: true
+flag:
+  content: LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
+  type: static
+attachments:
+- re-arm-asm.apk
+container: {}

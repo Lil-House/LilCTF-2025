@@ -1,4 +1,26 @@
-## php-jail-is-my-cry
+# php_jail_is_my_cry
+
+**出题**：Kengwang
+
+**难度**：中等
+
+## 题目描述
+
+PHP Jail is my CRY
+
+> 请注意附件中的代码存在一行需要你补充的代码, 已经注释表明, 否则会存在问题
+>
+> 本题不出网, 最终需要执行 /readflag
+
+## Hints
+
+- 并没有开启 allow_url_include [2025-08-16 01:00:08]
+
+## 部署注意事项
+
+本题不出网
+
+## Writeup
 
 > Break out the jail and hear my CURL cry
 

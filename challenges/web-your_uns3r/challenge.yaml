@@ -1,0 +1,27 @@
+info:
+  name: Your Uns3r
+  category: Web
+  author: Kengwang
+  difficulty: 简单
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 75
+  actual_score: 122
+  enable_blood_reward: true
+flag:
+  content: LILCTF{gonna_find_your_answer_to_unser}
+  type: leet
+attachments: []
+container:
+  name: your-uns3r
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/web-your_uns3r
+  expose_ports:
+  - name: http
+    port: 80
+  cpu_limit: 100
+  memory_limit: 64
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

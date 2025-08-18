@@ -1,0 +1,18 @@
+info:
+  name: obfusheader.h
+  category: Reverse
+  author: LilRan
+  difficulty: 困难
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 50
+  actual_score: 177
+  enable_blood_reward: true
+flag:
+  content: LILCTF{wH4t_1S_Dat@1LOW_c4n_1T_B3_eAtEn}
+  type: static
+attachments:
+- hello-obf.exe
+container: {}

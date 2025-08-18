@@ -1,0 +1,28 @@
+info:
+  name: The Truman Show
+  category: Pwn
+  author: c_lby
+  difficulty: 中等
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 18
+  actual_score: 484
+  enable_blood_reward: true
+flag:
+  content: LILCTF{[uuid]}
+  type: leet
+attachments:
+- pwn-trumanshow.zip
+container:
+  name: truman-show
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/pwn-trumanshow
+  expose_ports:
+  - name: nc
+    port: 70
+  cpu_limit: 100
+  memory_limit: 32
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true
