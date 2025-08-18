@@ -1,0 +1,116 @@
+# 构建工作流示例
+
+# LilCTF 所有容器题目通过 GitHub Actions 构建，每次代码 push 时自动触发构建，并推送到 GitHub 容器注册表和阿里云容器注册表。
+# 每道需要构建容器的题目，可以将此文件复制一份，根据注释修改，然后删去所有注释。
+
+# 赛后公开仓库不再需要构建镜像，此处仅保留一个示例工作流文件，供参考。
+
+name: Misc - 题目名称
+# CHANGE_ME: 这个标题会显示在全部题目任务列表中，除非太长否则写全名
+
+on:
+  push:
+    branches: [misc-check-in]
+    # CHANGE_ME: 每道题目使用一个独立的分支，分支名只使用小写字母、数字、中划线
+    paths:
+      - "challenges/misc-check-in/**"
+        # CHANGE_ME: 从根目录开始的路径，你的文件都放在这个路径下
+      - ".github/workflows/misc-check-in.yml"
+        # CHANGE_ME: 现在这个文件，记得重命名
+  workflow_dispatch:
+
+env:
+  NAME: misc-check-in
+  # CHANGE_ME: 与你的题目文件夹名保持一致，只使用小写字母、数字、中划线。这也是 Docker 镜像的名称前缀
+
+jobs:
+  challenge-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: true
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to Aliyun Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.ACR_REGISTRY }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/${{ github.repository }}/${{ env.NAME }}
+            ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ env.NAME }}
+          tags: |
+            latest
+
+      # 在 docker build 之前要做的事情，这部分你需要的话可以随便改
+      # - name: Pre build tasks
+      #   working-directory: challenges/${{ env.NAME }}/build
+      #   run: |
+      #     python3 ...
+      #     gcc ...
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: challenges/${{ env.NAME }}/build
+          # 这里是 Dockerfile 的路径
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+
+      # 在 docker build 之后要做的事情，这部分你需要的话可以随便改
+      # - name: Post build tasks
+      #   working-directory: challenges/${{ env.NAME }}/build
+      #   run: |
+      #     chmod +x post-build.sh
+      #     ./post-build.sh
+
+      # 可选：把发给选手的附件作为 artifact 上传，最后一次构建后从 artifact 下载附件，以便附件与远程环境完全相同
+      # - name: Upload attachments
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{ env.NAME }}
+      #     path: challenges/${{ env.NAME }}/attachments/
+
+  prune:
+    runs-on: ubuntu-latest
+    needs: challenge-build
+    if: always()
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Get lower case package name
+        id: lower_pkg
+        run: |
+          export PKG_NAME="${{ github.event.repository.name }}/${{ env.NAME }}"
+          echo "pkg_name=${PKG_NAME@L}" >> $GITHUB_OUTPUT
+
+      - name: Prune old packages
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package: ${{ steps.lower_pkg.outputs.pkg_name }}
+          exclude-tags: latest
+          dry-run: false
+          delete-untagged: true
+          delete-ghost-images: true
+          delete-partial-images: true
