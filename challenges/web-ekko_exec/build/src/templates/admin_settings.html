@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Settings{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4>管理员面板</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('admin_settings') }}">
+                    <div class="mb-3">
+                        <label for="time_api" class="form-label">时间API</label>
+                        <input type="url" class="form-control" id="time_api" name="time_api" value="{{ time_api }}" required>
+                        <div class="form-text">用这个API来获取当前时间</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

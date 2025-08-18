@@ -1,0 +1,18 @@
+info:
+  name: Space Travel
+  category: Crypto
+  author: 糖醋小鸡块
+  difficulty: 中等
+  release_stage: 2
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 39
+  actual_score: 234
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Un1qUe_s0luti0n_1N_sUbSp4C3!}
+  type: static
+attachments:
+- crypto-space-travel.zip
+container: {}

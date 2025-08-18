@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Execute Command{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4>Command Execution</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Command execution is only available after the year 2066.
+                </div>
+                
+                <form method="POST" action="{{ url_for('execute_command') }}">
+                    <div class="mb-3">
+                        <label for="command" class="form-label">Command</label>
+                        <input type="text" class="form-control" id="command" name="command" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Execute</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

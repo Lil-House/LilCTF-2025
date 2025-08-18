@@ -1,0 +1,28 @@
+info:
+  name: Linear
+  category: Crypto
+  author: 未央
+  difficulty: 中等
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 87
+  actual_score: 112
+  enable_blood_reward: true
+flag:
+  content: LILCTF{[uuid]}
+  type: leet
+attachments:
+- crypto-linear.py
+container:
+  name: linear
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/crypto-linear
+  expose_ports:
+  - name: nc
+    port: 70
+  cpu_limit: 100
+  memory_limit: 64
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

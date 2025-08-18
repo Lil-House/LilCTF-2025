@@ -1,0 +1,18 @@
+info:
+  name: baaaaaag
+  category: Crypto
+  author: pirater
+  difficulty: 中等
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 49
+  actual_score: 181
+  enable_blood_reward: true
+flag:
+  content: LILCTF{M4ybe_7he_brut3_f0rce_1s_be5t}
+  type: static
+attachments:
+- crypto-baaaaaag.py
+container: {}

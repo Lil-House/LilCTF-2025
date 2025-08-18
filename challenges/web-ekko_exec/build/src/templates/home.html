@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">欢迎来到Ekko exec</h1>
+        <p class="lead mb-4">只有能穿越时间的Ekko才能用的exec接口</p>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Features</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="feature-icon mb-2">
+                            <i class="bi bi-person-gear fs-1 text-primary"></i>
+                        </div>
+                        <h5>巨方便的管理员系统</h5>
+                        <h6 class="text-muted">admin账户可以随时调整API地址</h6>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="feature-icon mb-2">
+                            <i class="bi bi-shield-lock fs-1 text-primary"></i>
+                        </div>
+                        <h5>巨安全的RCE接口</h5>
+                        <h6 class="text-muted">预计发布时间：2066.1.1，敬请期待！</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% if 'user_id' not in session %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 gap-3">注册</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg px-4">登录</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

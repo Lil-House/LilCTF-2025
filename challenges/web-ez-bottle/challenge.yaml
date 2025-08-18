@@ -1,0 +1,28 @@
+info:
+  name: ez_bottle
+  category: Web
+  author: 0raN9e
+  difficulty: 简单
+  release_stage: 1
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 206
+  actual_score: 100
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Bottle_has_been_recycled}
+  type: leet
+attachments:
+- web-ez-bottle.py
+container:
+  name: ez-bottle
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/web-ez-bottle
+  expose_ports:
+  - name: http
+    port: 5000
+  cpu_limit: 100
+  memory_limit: 64
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

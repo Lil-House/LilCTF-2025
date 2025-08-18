@@ -1,0 +1,27 @@
+info:
+  name: 我曾有一份工作
+  category: Web
+  author: 晨曦
+  difficulty: 中等
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 18
+  actual_score: 484
+  enable_blood_reward: true
+flag:
+  content: LILCTF{have_you_found_a_job_now?_hahaha}
+  type: leet
+attachments: []
+container:
+  name: one-job
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/web-one-job
+  expose_ports:
+  - name: http
+    port: 80
+  cpu_limit: 300
+  memory_limit: 200
+  storage_limit: 800
+  allow_wan: true
+  allow_dns: true

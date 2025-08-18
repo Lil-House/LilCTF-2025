@@ -1,0 +1,28 @@
+info:
+  name: 接力！TurboFlash
+  category: Web
+  author: Anonymous
+  difficulty: N/A
+  release_stage: 0
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 40
+  actual_score: 289
+  enable_blood_reward: true
+flag:
+  content: LILCTF{you_two_should_have_a_fight_lol}
+  type: leet
+attachments:
+- warmup-web-turboflash.zip
+container:
+  name: turboflash
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/warmup-web-turboflash
+  expose_ports:
+  - name: http
+    port: 80
+  cpu_limit: 100
+  memory_limit: 32
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

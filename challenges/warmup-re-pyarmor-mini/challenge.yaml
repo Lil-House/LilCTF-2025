@@ -1,0 +1,18 @@
+info:
+  name: 纸老虎！真实世界的 Pyarmor Mini
+  category: Reverse
+  author: Anonymous
+  difficulty: N/A
+  release_stage: 0
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 6
+  actual_score: 836
+  enable_blood_reward: true
+flag:
+  content: LILCTF{4$SumIn9_th3_m@JEsty_of_tH3_7I93r}
+  type: static
+attachments:
+- humorous-armor.zip
+container: {}

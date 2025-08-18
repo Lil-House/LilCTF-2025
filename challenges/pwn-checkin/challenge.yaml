@@ -1,0 +1,28 @@
+info:
+  name: 签到
+  category: Pwn
+  author: gets
+  difficulty: 签到
+  release_stage: 1
+score:
+  max_score: 500
+  min_score: 50
+  solves: 203
+  actual_score: 50
+  enable_blood_reward: true
+flag:
+  content: LILCTF{[uuid]}
+  type: leet
+attachments:
+- pwn-checkin.zip
+container:
+  name: pwn-checkin
+  image: crpi-sjfu2ndz4tfcztvv.cn-hangzhou.personal.cr.aliyuncs.com/lil-house/pwn-checkin
+  expose_ports:
+  - name: nc
+    port: 70
+  cpu_limit: 100
+  memory_limit: 32
+  storage_limit: 128
+  allow_wan: true
+  allow_dns: true

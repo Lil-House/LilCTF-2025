@@ -1,0 +1,18 @@
+info:
+  name: Qt_Creator
+  category: Reverse
+  author: 晓梦ovo
+  difficulty: 简单
+  release_stage: 3
+score:
+  max_score: 1000
+  min_score: 100
+  solves: 61
+  actual_score: 144
+  enable_blood_reward: true
+flag:
+  content: LILCTF{Q7_cre4t0r_1s_very_c0nv3ni3nt}
+  type: static
+attachments:
+- re-qt-creator.exe
+container: {}

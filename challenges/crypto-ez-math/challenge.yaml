@@ -1,0 +1,18 @@
+info:
+  name: ez_math
+  category: Crypto
+  author: sudopacman
+  difficulty: 简单
+  release_stage: 1
+score:
+  max_score: 500
+  min_score: 50
+  solves: 353
+  actual_score: 50
+  enable_blood_reward: true
+flag:
+  content: LILCTF{It_w4s_the_be5t_of_times_1t_wa5_the_w0rst_of_t1me5}
+  type: static
+attachments:
+- crypto-ez_math.py
+container: {}
