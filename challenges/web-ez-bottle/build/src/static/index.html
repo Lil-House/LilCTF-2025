@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓶子回收系统</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .benefits {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #3498db;
+        }
+        .benefit-text {
+            flex: 1;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: #e8f4fc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem;
+            min-width: 120px;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+        .action-button {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .action-button:hover {
+            background: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>瓶子回收系统</h1>
+        <p>保护环境，从回收每一个瓶子开始</p>
+        
+        <div class="benefits">
+            <h2>回收瓶子的好处</h2>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">♻️</div>
+                <div class="benefit-text">
+                    <h3>节约资源</h3>
+                    <p>回收1吨塑料瓶可节约6吨石油资源，减少对自然资源的开采。</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">🌱</div>
+                <div class="benefit-text">
+                    <h3>减少污染</h3>
+                    <p>塑料瓶自然降解需要450年以上，回收可大大减少白色污染。</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">💡</div>
+                <div class="benefit-text">
+                    <h3>节能环保</h3>
+                    <p>相比生产新塑料，回收再利用可节省70%的能源消耗。</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-text">
+                    <h3>经济收益</h3>
+                    <p>回收产业创造就业机会，回收物可产生经济效益。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">450年</div>
+                <div>塑料自然降解时间</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">70%</div>
+                <div>能源节省比例</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1:6</div>
+                <div>回收与石油节约比</div>
+            </div>
+        </div>
+        
+        <a href="/upload" class="action-button">参与瓶子回收</a>
+        
+        <p class="note">每回收一个瓶子，都是对地球的一份关爱</p>
+    </div>
+</body>
+</html>

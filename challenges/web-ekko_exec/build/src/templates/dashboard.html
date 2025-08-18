@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4>用户仪表盘</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">欢迎, {{ session['username'] }}!</h5>
+                <p class="card-text">这是你的个人仪表盘</p>
+                
+                <div class="mt-4">
+                    <h6>可用的功能:</h6>
+                    <div class="list-group">
+                        <a href="{{ url_for('execute_command') }}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-terminal me-2"></i>执行命令
+                        </a>
+                        {% if session['is_admin'] %}
+                            <a href="{{ url_for('admin_settings') }}" class="list-group-item list-group-item-action">
+                                <i class="bi bi-gear me-2"></i>管理员设置
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="text-center mb-4">登录</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+        <div class="mb-3">
+            <label for="username" class="form-label">用户名</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">密码</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">记住我？</label>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">登录</button>
+        </div>
+    </form>
+    <div class="mt-3 text-center">
+        <p>没有账户? <a href="{{ url_for('register') }}">在这里注册</a></p>
+        <p><a href="{{ url_for('forgot_password') }}">忘记密码?（这个功能没做完，别用）</a></p>
+    </div>
+</div>
+{% endblock %}

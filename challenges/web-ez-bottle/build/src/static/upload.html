@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回收站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 450px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .garbage-bins {
+            display: flex;
+            justify-content: space-around;
+        }
+        .bin {
+            width: 200px;  /* 修改宽度 */
+            height: 200px;  /* 修改高度 */
+            background-image: url('/static/back.png'); /* 相对路径 */
+            background-size: contain; /* 保持图片比例 */
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .bin:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>瓶子该去哪里</h2>
+        <div class="garbage-bins">
+            <div class="bin" title="垃圾站"></div>
+        </div>
+    </div>
+</body>
+</html>

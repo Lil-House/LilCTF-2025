@@ -1,0 +1,9 @@
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - "LILCTF_FLAG=flag{this_is_example_flag}"

