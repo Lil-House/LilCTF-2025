@@ -6,5 +6,9 @@
 
 **Real World** - LilCTF 正赛在多个方向也有由真实项目出成、不是为了出题而故意构造的题目
 
+---
+
+Humorous Pyarmor Mini - 它真的起到保护效果了吗？
+
 ## Writeup
 
