@@ -18,6 +18,8 @@ misc-example
 
 LilCTF 所有容器题目通过 GitHub Actions 构建，每次代码 push 时自动触发构建，并推送到 GitHub 容器注册表和阿里云容器注册表（ACR）。现已在 ACR 上公开赛时使用的镜像，版本 tag 为 latest。
 
+镜像地址请在各题目文件夹中的 `challenge.yaml` 中查看。
+
 可在启动容器时传入 `LILCTF_FLAG` 或 `A1CTF_FLAG` 或 `GZCTF_FLAG` 或 `FLAG` 环境变量来设置容器的 flag。
 
 ```bash
