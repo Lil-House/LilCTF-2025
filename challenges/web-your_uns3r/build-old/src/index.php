@@ -6,14 +6,9 @@ class User
     public $value;
     public function exec()
     {
-        if (strpos($this->value, 'S:') === false) {
-            $ser = serialize(unserialize($this->value));
-            $instance = unserialize($ser);
-            if ($ser != $this->value && $instance instanceof Access) {
-                include($instance->getToken());
-            }
-        } else {
-            throw new Exception("wanna ?");
+        $ser = unserialize(serialize(unserialize($this->value)));
+        if ($ser != $this->value && $ser instanceof Access) {
+            include($ser->getToken());
         }
     }
     public function __destruct()
@@ -44,7 +39,7 @@ class Access
 }
 
 $ser = $_POST["user"];
-if (stripos($ser, 'admin') !== false || stripos($ser, 'Access":') !== false) {
+if (strpos($ser, 'admin') !== false && strpos($ser, 'Access":') !== false) {
     exit ("no way!!!!");
 }
 

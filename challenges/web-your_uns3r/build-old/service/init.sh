@@ -19,7 +19,7 @@ fi
 echo -n $INSERT_FLAG > /flag
 INSERT_FLAG=""
 
-chmod 400 /flag
+chmod 444 /flag
 
 php-fpm -D
 nginx -g 'daemon off;'

