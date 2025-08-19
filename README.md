@@ -6,7 +6,17 @@
 
 LilCTF 是由 LilHouse 团队主办的网络安全夺旗赛，已于 2025-8-15 至 2025-8-17 成功举办，定位是介于新生赛（新手入门指引）与选拔性赛事（各种 XX 杯、联队招新赛）这两者之间的过渡，主要目标群体是 2024 年 9 月前后开始接触 CTF、学了一年左右的 CTFer。同时也有一些更具挑战性的题目。
 
+## 题目列表、源代码、官方题解
+
+见 [challenges/](./challenges/)。
+
+## 选手投稿 Writeup
+
+见 [players-writeup/](./players-writeup/)。
+
 ## 许可协议
+
+选手投稿 Writeup 的内容，如无特殊说明，则遵循 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议。
 
 除去另有说明的部分（包括但不限于选手投稿的 Writeup），本仓库内容遵循下述协议。请在使用前仔细阅读并遵守该协议。
 
