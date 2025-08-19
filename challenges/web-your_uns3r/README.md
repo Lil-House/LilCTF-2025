@@ -8,5 +8,8 @@
 
 我一直在等待你的答案
 
-## Writeup
+## 关于题目更改
 
+原始平台部署的放在 `build-old` 中, 原始的 `solve` 放置在 `solve-old` 中
+
+修改后的内容放在 `build` 和 `solve` 中
