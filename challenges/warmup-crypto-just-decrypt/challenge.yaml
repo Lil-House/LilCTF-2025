@@ -14,5 +14,5 @@ flag:
   content: LILCTF{b1a6labl4@#$%_H4v3_fUn_W1tH_y0Ur_sYmM3try_3NcRyPt10n!}
   type: static
 attachments:
-- just_decrypt.py
+- warmup-crypto-just_decrypt.py
 container: {}
