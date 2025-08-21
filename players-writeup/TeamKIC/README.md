@@ -847,13 +847,15 @@ LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
 
 "admin" 那里没有严格等于，真是太好啦，那我们就让创建的账户 admin 字段直接为 true(bool)。绕过 admin 之后那后面的 `Access":` 字符串检测就不用管了。
 
-本地 PHP 里把对象构造好，调用 serialize() 之后 POST 过去。Payload:
+本地 PHP 里把对象构造好，调用 serialize() 之后 POST 过去。题目最后会拼接字符串 `prefix + "lilctf" + suffix` 并作为 include 的参数执行，那么最终路径构造为 `/lilctf/../flag`，即可顺利绕过。
+
+Payload:
 
 ```
 a:2:{i:0;O:4:"User":2:{s:8:"username";b:1;s:5:"value";s:72:"O:6:"Access":2:{s:9:"\0*\0prefix";s:1:"/";s:9:"\0*\0suffix";s:8:"/../flag";}";}}
 ```
 
-题目中会拼接字符串 prefix + "lilctf" + suffix 并作为 include 参数执行，而 payload 这样就可以 `include(""/lilctf/../flag")` 把 flag 显示出来。反序列化函数能自动处理这种多重双引号而无需转义，很欣慰。
+反序列化函数能自动处理这种多重双引号而无需转义，很欣慰。
 
 本地 PHP 8.4.11 测试时，直接传对象的序列化是可以按预期工作的，但到靶机上就不行。根据响应得知靶机 PHP 版本为 5.6.40。
 
@@ -1081,6 +1083,11 @@ curl 绕过 open_basename 吗，可我一执行 curl 相关函数就报错，明
 请欣赏属于整个 TeamKIC 的后日谈！
 
 _感谢 LilHouse 团队，以及阅读这篇 WP 的你……_
+
+## Omake：队员 RenzukaCtone 的一些感想
+好累啊唉唉唉
+
+![](img/Snipaste_2025-08-21_21-52-02.webp)
 
 ## Omake：后日谈
 RenzukaCtone：这次 CTF，虽然一开始说是准备摆烂，最后为了解题连觉都没怎么睡（在家就可以凌晨解题了）。现在回想，只是自己转弯太慢，大部分时间都在进行无意义的尝试。
