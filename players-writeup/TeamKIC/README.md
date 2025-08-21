@@ -336,6 +336,12 @@ LILCTF{2d36efef-9ee5-4dc9-ba7e-179b219837d0}
 ### Omake
 ![](img/cd3ed38874ec2040fc3cd6728ab21b09.webp)
 
+这是我第一次用 pwntools，所以都不知道有 `interactive()` 这么个东西。
+
+照着 [4qwerty7 的过往 WP](https://github.com/PKU-GeekGame/geekgame-3rd/tree/master/players_writeup/1721) 写代码，所以变量名跟着用了「rr」——到底为甚么会双写呢？
+
+_优质解答：我不知道_
+
 ## \[web\] Ekko_note
 解题者：RenzukaCtone
 
@@ -588,6 +594,19 @@ LILCTF{03803481-0c2b-4d88-92fe-622984719f82}
 LILCTF{03803481-0c2b-4d88-92fe-622984719f82}
 ```
 ……害我没去做真·签到题「是谁没有阅读参赛须知？」，好在昌九发现了那题。「难度：签到」倒是所言不虚，不过这是对有 pwn 基础的人而言的。
+
+### Omake
+这是我第一次学 pwn，所以一开始卡在了不少点。
+```Python
+rr.recvline()
+leak = rr.recvline()[:-1].ljust(8, b'\x00')
+```
+一开始只 `rr.recvline()` 了一次，发现后面算出的地址全是负数。打印 `leak` 发现，居然是零耶！
+```Python
+# 不弹栈就等着吃 Got EOF while reading in interactive 罢
+payload += pwn.p64(ret)
+```
+其实只要有问题就会报「Got EOF while reading in interactive」。但我完全不懂，直接丢去搜，反倒搜出了解决方案。
 
 ## \[crypto\] baaaaaag
 解题者：Ishisashi
