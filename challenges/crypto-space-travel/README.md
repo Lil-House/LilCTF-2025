@@ -7,6 +7,3 @@
 ## 题目描述
 
 Jump up!
-
-## Writeup
-

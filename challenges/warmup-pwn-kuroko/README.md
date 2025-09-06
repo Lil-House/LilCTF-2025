@@ -16,6 +16,3 @@
 import kuroko
 kuroko.importmodule(今天导入点什么好呢)
 ```
-
-## Writeup
-

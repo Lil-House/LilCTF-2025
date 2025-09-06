@@ -9,6 +9,3 @@
 ---
 
 Humorous Pyarmor Mini - 它真的起到保护效果了吗？
-
-## Writeup
-

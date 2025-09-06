@@ -7,6 +7,3 @@
 ## 题目描述
 
 Do you like uboot?
-
-## Writeup
-
