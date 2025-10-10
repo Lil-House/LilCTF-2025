@@ -60,13 +60,6 @@ jobs:
           tags: |
             latest
 
-      # 在 docker build 之前要做的事情，这部分你需要的话可以随便改
-      # - name: Pre build tasks
-      #   working-directory: challenges/${{ env.NAME }}/build
-      #   run: |
-      #     python3 ...
-      #     gcc ...
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
